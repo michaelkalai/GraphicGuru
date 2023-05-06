@@ -2,11 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <stdio.h>
-#include <stdlib.h>
 #include "imagemanipulator.h"
-#include "stb_image/stb_image.h"
-#include "stb_image/stb_image_write.h"
 #include "ui.h"
 
 using namespace std;
