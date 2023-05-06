@@ -4,30 +4,29 @@
 #include <SFML/Window.hpp>
 #include <stdio.h>
 #include <stdlib.h>
-
-//#define STB_IMAGE_IMPLEMENTATION
+#include "imagemanipulator.h"
 #include "stb_image/stb_image.h"
-//#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image/stb_image_write.h"
+#include "ui.h"
 
 using namespace std;
 using namespace sf;
 int main()
 {
 	int width, height, channels;
-	unsigned char* img = stbi_load("images/test_image1.jpg", &width, &height, &channels, 0);
-	if (img == NULL) {
-		cout << "Error in loading image" << endl;
-	}
-	else {
-		cout << "Loaded image with width: " << width << " height: " << height << " channels: " << channels << endl;
-		stbi_write_png("images/test_image_output1.png", width, height, channels, img, width * channels);
-		stbi_write_jpg("images/test_image_output2.jpg", width, height, channels, img, 100);
-		cout << "Done" << endl;
-	}
-	RenderWindow window(VideoMode(VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height), "SFML works!");
-	CircleShape shape(100.f);
-	shape.setFillColor(Color::Red);
+	string filename = "images/test_image1.jpg";
+	Color red = Color::Red;
+	Color bg(78, 102, 102);
+	ImageManipulator image(filename);
+
+	RenderWindow window(VideoMode(VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height), "SFML works!", Style::Fullscreen);
+	window.setFramerateLimit(60);
+
+	Font font;
+	font.loadFromFile("./font/AovelSansRounded.ttf");
+	UI ui(font);
+
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -35,9 +34,22 @@ int main()
 		{
 			if (event.type == Event::Closed)
 				window.close();
+			else if (event.type == Event::MouseButtonPressed) {
+				if (event.mouseButton.button == Mouse::Left) {
+					if (ui.buttonclicked(event.mouseButton.x, event.mouseButton.y)) {
+						cout << "saving file" << endl;
+						image.savefile();
+						cout << "save complete" << endl;
+					}
+					else {
+						image.colorpixels(event.mouseButton.x, event.mouseButton.y, event.mouseButton.x, event.mouseButton.y, red);
+					}
+				}
+			}
 		}
-		window.clear();
-		window.draw(shape);
+		window.clear(bg);
+		image.draw(window);
+		ui.draw(window);
 		window.display();
 	}
 	return 0;
