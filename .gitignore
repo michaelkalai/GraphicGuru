@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/GraphicGuru/GraphicGuru.vcxproj.filters
+/GraphicGuru/GraphicGuru.vcxproj
+/GraphicGuru/images
