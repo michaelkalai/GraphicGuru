@@ -28,3 +28,15 @@ void TextButton::draw(RenderWindow& window)
 	window.draw(_btnbg);
 	window.draw(_btntext);
 }
+
+void TextButton::movebutton()
+{
+	_btnbg.setPosition(Vector2f(_btnx, _btny));
+	_btntext.setPosition(Vector2f(_btnx, _btny));
+	centertext();
+}
+
+void TextButton::setbtny(float btny)
+{
+	_btny = btny;
+}
