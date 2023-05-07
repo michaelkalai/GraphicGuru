@@ -3,6 +3,7 @@
 #include <vector>
 #include "button.h"
 #include "textbutton.h"
+#include "textmenubutton.h"
 
 using namespace std;
 
@@ -13,5 +14,6 @@ public:
 	UI(Font& font);
 	void draw(RenderWindow& window);
 	bool buttonclicked(int& x, int& y);
+	void generatefilebtn(Font& font);
 };
 
