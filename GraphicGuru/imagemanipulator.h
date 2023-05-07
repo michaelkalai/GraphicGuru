@@ -24,5 +24,6 @@ public:
 	void draw(RenderWindow& window);
 	void colorpixels(int& initialx, int& initialy, int xcoord, int ycoord, Color& color);
 	void savefile();
+	Sprite* getspriteptr();
 };
 

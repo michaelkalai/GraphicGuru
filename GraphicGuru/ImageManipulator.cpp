@@ -15,6 +15,8 @@ ImageManipulator::ImageManipulator(string& filename)
 	_scaley = VideoMode::getDesktopMode().height / _imgsprite.getLocalBounds().height / 1.5;
 	_imgsprite.setPosition(_winwidth / 2 - (_imgwidth * _scalex / 2), _winheight / 2 - (_imgheight * _scaley / 2));
 	_imgsprite.setScale(_scalex, _scaley);
+	cout << _imgwidth / _winwidth << endl;
+	cout << _imgheight / _winheight << endl;
 }
 
 void ImageManipulator::draw(RenderWindow& window)
@@ -36,8 +38,8 @@ void ImageManipulator::colorpixels(int& initialx, int& initialy, int xcoord, int
 			colorpixels(initialx, initialy, xcoord, ycoord + i, color);
 		}
 	}
-	for (int i = 0; i < _imgwidth / _winwidth + 4; i++) {
-		for (int j = 0; j < _imgheight / _winheight + 4; j++) {
+	for (int i = 0; i < _imgwidth / _winwidth * 1.5; i++) {
+		for (int j = 0; j < _imgheight / _winheight * 1.5; j++) {
 			_img.setPixel(min((xcoord - ((_winwidth / 2 - xcoord) / 2)) / _winwidth * _imgwidth + i, (float)_imgwidth - 1), min((ycoord - ((_winheight / 2 - ycoord) / 2)) / _winheight * _imgheight + j, (float)_imgheight - 1), color);
 		}
 	}
@@ -47,4 +49,9 @@ void ImageManipulator::colorpixels(int& initialx, int& initialy, int xcoord, int
 void ImageManipulator::savefile()
 {
 	_img.saveToFile("images/save_test.jpg");
+}
+
+Sprite* ImageManipulator::getspriteptr()
+{
+	return &_imgsprite;
 }
