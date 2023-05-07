@@ -14,6 +14,21 @@ void Button::generatebg()
 	_btnbg.setOutlineThickness(5);
 }
 
+float Button::getbtny()
+{
+	return _btny;
+}
+
+float Button::getbtnheight()
+{
+	return _btnheight;
+}
+
+bool Button::wasclicked(int& x, int& y)
+{
+	return _btnbg.getGlobalBounds().contains(x, y);
+}
+
 RectangleShape* Button::getbgptr()
 {
 	return &_btnbg;
