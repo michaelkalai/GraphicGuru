@@ -37,7 +37,7 @@ int main()
 						image.savefile();
 						cout << "save complete" << endl;
 					}
-					else {
+					else if (image.getspriteptr()->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
 						image.colorpixels(event.mouseButton.x, event.mouseButton.y, event.mouseButton.x, event.mouseButton.y, red);
 					}
 				}
