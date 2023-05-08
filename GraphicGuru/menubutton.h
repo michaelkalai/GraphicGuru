@@ -14,5 +14,6 @@ public:
 	bool wasclicked(int& x, int& y);
 	void addbutton(Button* btnptr);
 	void alignmenu();
+	void enactfunction();
 };
 

@@ -1,10 +1,12 @@
 #include "menubutton.h"
 
+// defaults menu display to off
 MenuButton::MenuButton()
 {
-	_displaymenu = true;
+	_displaymenu = false;
 }
 
+// draws each button in the menu
 void MenuButton::drawmenu(RenderWindow& window)
 {
 	for (int i = 0; i < _menu.size(); i++) {
@@ -12,6 +14,7 @@ void MenuButton::drawmenu(RenderWindow& window)
 	}
 }
 
+// checks to see if any of the displayed buttons were clicked
 bool MenuButton::wasclicked(int& x, int& y)
 {
 	if (Button::wasclicked(x, y)) {
@@ -27,11 +30,13 @@ bool MenuButton::wasclicked(int& x, int& y)
 	return false;
 }
 
+// adds button to menu
 void MenuButton::addbutton(Button* btnptr)
 {
 	_menu.push_back(btnptr);
 }
 
+// moves buttons to their correct positions
 void MenuButton::alignmenu()
 {
 	Button* btnptr;
@@ -40,4 +45,10 @@ void MenuButton::alignmenu()
 		btnptr->setbtny(btnptr->getbtny() + (btnptr->getbtnheight() * i));
 		btnptr->movebutton();
 	}
+}
+
+// enables/disables menu display
+void MenuButton::enactfunction()
+{
+	_displaymenu = !_displaymenu;
 }
