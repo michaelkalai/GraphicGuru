@@ -4,6 +4,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics/Image.hpp>
 #include <String>
+#include "forward.h"
+
 
 using namespace sf;
 using namespace std;
@@ -16,6 +18,9 @@ protected:
 	float _btnheight;
 	float _btnx;
 	float _btny;
+	UI* _ui;
+	void(FunctionHandler::* _funcptr)(UI*);
+	FunctionHandler * _funch;
 public:
 	Button();
 	void generatebg();
@@ -26,5 +31,6 @@ public:
 	float getbtnheight();
 	virtual bool wasclicked(int& x, int& y);
 	RectangleShape* getbgptr();
+	virtual void enactfunction();
 };
 
