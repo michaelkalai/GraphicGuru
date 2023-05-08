@@ -1,5 +1,6 @@
 #include "textbutton.h"
 
+// centers the text within the text rectangle
 void TextButton::centertext()
 {
 	FloatRect textRect = _btntext.getLocalBounds();
@@ -8,8 +9,12 @@ void TextButton::centertext()
 	_btntext.setPosition(Vector2f(_btnx + (_btnwidth / 2), _btny + (_btnheight / 2)));
 }
 
-TextButton::TextButton(float& btnwidth, float& btnheight, float btnx, float btny, string btntext, Font& font)
+// constructs button and text
+TextButton::TextButton(FunctionHandler* funch, void(FunctionHandler::* funcptr)(UI*), UI* ui, float& btnwidth, float& btnheight, float btnx, float btny, string btntext, Font& font)
 {
+	_funch = funch;
+	_ui = ui;
+	_funcptr = funcptr;
 	_btnwidth = btnwidth;
 	_btnheight = btnheight;
 	_btnx = btnx;
@@ -23,12 +28,14 @@ TextButton::TextButton(float& btnwidth, float& btnheight, float btnx, float btny
 	centertext();
 }
 
+// draws button
 void TextButton::draw(RenderWindow& window)
 {
 	window.draw(_btnbg);
 	window.draw(_btntext);
 }
 
+// moves button to new position
 void TextButton::movebutton()
 {
 	_btnbg.setPosition(Vector2f(_btnx, _btny));
@@ -36,6 +43,7 @@ void TextButton::movebutton()
 	centertext();
 }
 
+// changes the button's associated y value
 void TextButton::setbtny(float btny)
 {
 	_btny = btny;
