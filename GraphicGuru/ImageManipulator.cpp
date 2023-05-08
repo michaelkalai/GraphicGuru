@@ -1,6 +1,7 @@
 
 #include "imagemanipulator.h"
 
+// loads image file and displays image in center of screen (resizes as necessary and records relevant values)
 ImageManipulator::ImageManipulator(string& filename)
 {
 	_img.loadFromFile(filename);
@@ -19,11 +20,13 @@ ImageManipulator::ImageManipulator(string& filename)
 	cout << _imgheight / _winheight << endl;
 }
 
+// draws image
 void ImageManipulator::draw(RenderWindow& window)
 {
 	window.draw(_imgsprite);
 }
 
+// changes the color of the pixels within the image (currently modifies a 300 by 300 area with the mouse as the origin)
 void ImageManipulator::colorpixels(int& initialx, int& initialy, int xcoord, int ycoord, Color& color)
 {
 	if (xcoord > initialx + 300) {
@@ -46,11 +49,13 @@ void ImageManipulator::colorpixels(int& initialx, int& initialy, int xcoord, int
 	colorpixels(initialx, initialy, xcoord + 1, ycoord, color);
 }
 
+// saves file
 void ImageManipulator::savefile()
 {
 	_img.saveToFile("images/save_test.jpg");
 }
 
+// returns pointer to sprite
 Sprite* ImageManipulator::getspriteptr()
 {
 	return &_imgsprite;
